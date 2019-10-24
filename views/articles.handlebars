@@ -1,0 +1,68 @@
+<div class="container">
+  {{#each data}}
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+          <p>
+            <strong>Article ID</strong>: {{id}}
+          </p>
+
+          <p>
+            <strong>Link</strong>:<a href="#" data-link="{{link}}" data-id="{{id}}" class="modal-link"> {{link}}</a>
+          </p>
+
+          <p>
+            <button type="button" class="modal-btn btn btn-primary" data-toggle="modal" data-target="#{{id}}-modal">Open
+              Article</button>
+            <button type="button" class="btn btn-primary save-btn" data-id="{{id}}">Save for Later</button>
+            <button type="button" class="btn btn-primary seeNotes-btn" data-id="{{id}}">Read Notes</button>
+          </p>
+          {{!-- Article Modal --}}
+          <div id="{{id}}-modal" data-link="{{link}}" data-id="{{id}}" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="{{id}}-Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <h5>Article - Resize me or Drag me around</h5>
+                <button type="button" class="btn-sm btn-primary addNote-btn" data-id="{{id}}">Add a Note</button>
+                <div id="{{id}}-noteForm" class="modal-content-notes hide">
+                  <form>
+                    <div class="form-group">
+                      <label for="{{id}}-note-title">Title</label>
+                      <input type="text" class="form-control" id="{{id}}-note-title" placeholder="Title"
+                        rows="4"></textarea>
+                    </div>
+                    {{!-- Save Note Form --}}
+                    <div class="form-group">
+                      <label for="{{id}}-note-body">Note</label>
+                      <textarea class="form-control input-md" id="{{id}}-note-body" placeholder="Write your note here"
+                        rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary note-btn" data-id="{{id}}"
+                      data-loading-text="Sending info..">Save note</button>
+                  </form>
+                </div>
+
+                <div class="modal-content-article"></div>
+              </div>
+            </div>
+          </div>
+          <a href="/">← Back To Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script src="/js/articles.js"></script>
