@@ -3,6 +3,8 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const scrape = require("./scrape");
+
 
 const session = require("express-session");
 
@@ -75,3 +77,7 @@ app.listen(PORT, function() {
 });
 
 module.exports = app;
+
+setInterval(scrape.getJS, 24*60*60*1000);
+setInterval(scrape.getTech, 24*60*60*1000);
+setInterval(scrape.getProgramming, 24*60*60*1000);

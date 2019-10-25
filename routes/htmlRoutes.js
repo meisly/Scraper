@@ -4,7 +4,9 @@ module.exports = function (app) {
   // Route for getting all Articles from the db
   app.get("/articles/js", function (req, res) {
     // TODO: Finish the route so it grabs all of the articles
-    db.Article.find({cat: "js"})
+  
+
+    db.Article.find({ cat: "js" })
       .then(articles => {
         console.log(articles)
         res.render("articles", {
@@ -17,7 +19,21 @@ module.exports = function (app) {
   });
   app.get("/articles/tech", function (req, res) {
     // TODO: Finish the route so it grabs all of the articles
-    db.Article.find({cat: "tech"})
+    db.Article.find({ cat: "tech" })
+      .then(articles => {
+        console.log(articles)
+        res.render("articles", {
+          data: articles
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  });
+
+  app.get("/articles/programming", function (req, res) {
+    // TODO: Finish the route so it grabs all of the articles
+    db.Article.find({ cat: "programming" })
       .then(articles => {
         console.log(articles)
         res.render("articles", {
@@ -46,7 +62,7 @@ module.exports = function (app) {
   // Route for saving/updating an Article's associated Note
 
   //Main Page
-  app.get("/", function(req, res){
+  app.get("/", function (req, res) {
     res.render("index")
   })
   // Render 404 page for any unmatched routes
@@ -54,3 +70,4 @@ module.exports = function (app) {
     res.render("404");
   });
 };
+
