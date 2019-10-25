@@ -13,6 +13,10 @@ const ArticleSchema = new Schema({
         type: String,
         match: [/([--:\w?@%&+~#=]*\.[a-z]{2,4}\/{0,2})((?:[?&](?:\w+)=(?:\w+))+|[--:\w?@%&+~#=]+)?/] // needs to match url
     },
+    cat: {
+        type: String,
+
+    },
     notes: [
         {
             type: Schema.Types.ObjectId,

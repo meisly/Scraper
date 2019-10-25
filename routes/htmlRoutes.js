@@ -4,7 +4,7 @@ module.exports = function (app) {
   // Route for getting all Articles from the db
   app.get("/articles/js", function (req, res) {
     // TODO: Finish the route so it grabs all of the articles
-    db.Article.find({})
+    db.Article.find({cat: "js"})
       .then(articles => {
         console.log(articles)
         res.render("articles", {
@@ -15,7 +15,19 @@ module.exports = function (app) {
         console.log(err)
       })
   });
-
+  app.get("/articles/tech", function (req, res) {
+    // TODO: Finish the route so it grabs all of the articles
+    db.Article.find({cat: "tech"})
+      .then(articles => {
+        console.log(articles)
+        res.render("articles", {
+          data: articles
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  });
   // Route for grabbing a specific Article by id, populate it with it's note
   app.get("/article/:id", function (req, res) {
     db.Article.findById(req.params.id).populate('notes')

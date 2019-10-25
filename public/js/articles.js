@@ -1,20 +1,20 @@
 $(document).ready(function () {
-   
-    $('body').on('shown.bs.modal','.modal', function() {
+
+    $('body').on('shown.bs.modal', '.modal', function () {
         $(document).off('focusin.modal')
-      });
+    });
 
     $('.addNote-btn').each(function () {
         let id = $(this).data("id");
-        let pops = $(this);
         $(this).popover({
             placement: 'right',
             title: 'Add Note Form',
             html: true,
             content: $(`#${id}-noteForm`).html()
-        }).on('click', function () {
-            // had to put it within the on click action so it grabs the correct info on submit
+        }).on('click', function (event) {
+            
             $('.note-btn').click(function () {
+                $(".popover").removeClass("show")
                 $.ajax({
                     method: "POST",
                     url: `/article/${id}`,
@@ -22,18 +22,17 @@ $(document).ready(function () {
                         title: $(".popover").find(`#${id}-note-title`).val(),
                         body: $(".popover").find(`#${id}-note-body`).val()
                     }
-                }).then((r)=>{
-                    pops.popover('hide')
                 })
             })
         })
     })
-    $(".seeNotes-btn").on("click", function(){
+
+    $(".seeNotes-btn").on("click", function () {
         let id = $(this).data("id");
         $.ajax({
             method: "GET",
             url: `/article/${id}`
-          }).then(window.location = `/article/${id}`)
+        }).then(window.location = `/article/${id}`)
     })
 
     $(".modal").one("shown.bs.modal", function () {
@@ -55,8 +54,22 @@ $(document).ready(function () {
     });
     $('.modal-dialog').draggable();
 
-    $(".save-btn").on("click", function () {
-        let artId = $(this).data("id");
 
-    })
-})
+    // $(".save-btn").on("click", function () {
+    //     let artId = $(this).data("id");
+
+    // })
+
+    //notes page delete button
+    $(".delete-btn").on("click", function () {
+        let articleId = $(this).data("id");
+        $.ajax({
+            method: "DELETE",
+            url: `/article/`,
+            data: {
+                id: articleId
+            }
+        })
+        setTimeout(location.reload(true), 1500)
+    });
+});
