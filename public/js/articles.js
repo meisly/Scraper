@@ -26,6 +26,9 @@ $(document).ready(function () {
             })
         })
     })
+    $(document).on("submit", "form", function(event){
+        event.preventDefault();
+    })
 
     $(".seeNotes-btn").on("click", function () {
         let id = $(this).data("id");
