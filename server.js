@@ -15,9 +15,19 @@ if(storage){
   const redis = require("redis");
   const redisStore = require("connect-redis")(session);
   const client = redis.createClient(process.env.REDIS_URL);
+
+  client.on("connect", function(){
+    scrape.getJS();
+    scrape.getProgramming();
+    scrape.getTech();
+  })
 }
 
 
+
+setInterval(scrape.getJS, 60*60*1000);
+setInterval(scrape.getTech, 60*60*1000);
+setInterval(scrape.getProgramming, 60*60*1000);
 
 //Import all models
 var db = require("./models");
@@ -76,6 +86,4 @@ app.listen(PORT, function() {
 
 module.exports = app;
 
-setInterval(scrape.getJS, 60*60*1000);
-setInterval(scrape.getTech, 60*60*1000);
-setInterval(scrape.getProgramming, 60*60*1000);
+
