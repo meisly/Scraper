@@ -42,6 +42,7 @@ $(document).ready(function () {
         let modal = $(this).find(".modal-content-article");
 
         let link = $(this).data("link");
+        link.replace("http", "https")
         let id = $(this).data("id");
         let frame = $("<iframe>", {
             src: link

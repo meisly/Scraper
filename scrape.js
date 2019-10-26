@@ -59,6 +59,7 @@ function getTech() {
             }else{
                 result.link = "http://medium.com" + link;
             }
+            
             // Add the text and href of every link, and save them as properties of the result object
             result.title = $(this)
                 .find("h3  a")

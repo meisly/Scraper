@@ -76,6 +76,6 @@ app.listen(PORT, function() {
 
 module.exports = app;
 
-setInterval(scrape.getJS, 24*60*60*1000);
-setInterval(scrape.getTech, 24*60*60*1000);
-setInterval(scrape.getProgramming, 24*60*60*1000);
+setInterval(scrape.getJS, 60*60*1000);
+setInterval(scrape.getTech, 60*60*1000);
+setInterval(scrape.getProgramming, 60*60*1000);
