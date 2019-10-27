@@ -10,11 +10,12 @@ const session = require("express-session");
 
 
 const storage = process.env.REDIS_URL;
+let redis, redisStore, client;
 
 if(storage){
-  const redis = require("redis");
-  const redisStore = require("connect-redis")(session);
-  const client = redis.createClient(process.env.REDIS_URL);
+  redis = require("redis");
+  redisStore = require("connect-redis")(session);
+  client = redis.createClient(process.env.REDIS_URL);
 
   client.on("connect", function(){
     scrape.getJS();
