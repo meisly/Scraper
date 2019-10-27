@@ -6,7 +6,7 @@ module.exports = function (app) {
     // TODO: Finish the route so it grabs all of the articles
   
 
-    db.Article.find({ cat: "js" })
+    db.Article.find({ cat: "js" }).sort({ createdAt: 'asc' })
       .then(articles => {
         console.log(articles)
         res.render("articles", {
@@ -19,7 +19,7 @@ module.exports = function (app) {
   });
   app.get("/articles/tech", function (req, res) {
     // TODO: Finish the route so it grabs all of the articles
-    db.Article.find({ cat: "tech" })
+    db.Article.find({ cat: "tech" }).sort({ createdAt: 'asc' })
       .then(articles => {
         console.log(articles)
         res.render("articles", {
@@ -33,7 +33,7 @@ module.exports = function (app) {
 
   app.get("/articles/programming", function (req, res) {
     // TODO: Finish the route so it grabs all of the articles
-    db.Article.find({ cat: "programming" })
+    db.Article.find({ cat: "programming" }).sort({ createdAt: 'asc' })
       .then(articles => {
         console.log(articles)
         res.render("articles", {
