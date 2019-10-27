@@ -9,7 +9,7 @@ https://warm-thicket-80199.herokuapp.com
 
 ## Coming Soon
 #### User Login
-Users will be able to login and save articles that they're interested in into their own person library.
+Users will be able to login and save articles that they're interested in into their own personal library.
 #### User Subject Collections
 Label saved articles and notes with individualized tags for easy retrieval and study
 
